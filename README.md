@@ -1,5 +1,5 @@
 # Improving Prediction Interval Estimation and Deep Probabilistic Forecasting Using the Tube Loss Function
-
+Please see the full paper at 
 
  1. The first loss function that guarantees target t-coverage asymptotically, with proof provided at  
  2. Tube loss can move the PI tube up and down with its r parameter for capturing the denser region of the data cloud for narrow PI Tube.
@@ -24,13 +24,14 @@ Tube loss kernel machine with different values of r facilitating the movement of
 ![Screenshot 2024-11-28 143719](https://github.com/user-attachments/assets/d20edecc-4563-4f88-abe0-356d5d3185d2)
 
 
-Tube loss ANN comparisions with the QD loss ANN
+Tube loss ANN outperforms the QD loss ANN.
 
 
 ![Screenshot 2024-11-28 150301](https://github.com/user-attachments/assets/ae2897c4-e418-4a5f-be84-266a0ba85d85)
 
 
-Tube loss LSTM for probablistic forecasting
+Tube loss-based LSTM:  Tube loss simplifies and enhances the quality of probabilistic forecasting.Probablistic forecasting with the Tube loss based deep architechture
+
 ![Screenshot 2024-11-28 150557](https://github.com/user-attachments/assets/ffbbee30-a2fa-4a05-817f-60ac8ef2c101)
 ![Screenshot 2024-11-28 150655](https://github.com/user-attachments/assets/6a3cc67c-3e3b-4104-8691-de9864e3d371)
 ![Screenshot 2024-11-28 150636](https://github.com/user-attachments/assets/c7e1c2ad-7d79-48df-af16-87a132426bd2)
