@@ -12,3 +12,6 @@
 
    
 You can use the Tube loss-based deep forecasting models for probabilistic forecasting of wind power, wave energy, solar irradiance, crypto prices, stock prices, exchange rate, pollution rate,  etc.
+
+
+![Screenshot 2024-11-28 143719](https://github.com/user-attachments/assets/d20edecc-4563-4f88-abe0-356d5d3185d2)
