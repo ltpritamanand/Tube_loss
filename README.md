@@ -16,7 +16,7 @@ You can use the Tube loss-based deep forecasting models for probabilistic foreca
 
 (b) Tube Loss ANN: Provides Python code for the Tube loss Artificial Neural Network (ANN) for PI estimation.
 
-(c) Tube Loss DL: Contains Python code for a deep forecasting architecture trained with the Tube loss function for probabilistic forecasting tasks.
+(c) Tube Loss DL for probabilistic forecas: Contains Python code for a deep forecasting architecture trained with the Tube loss function for probabilistic forecasting tasks.
 
 
 Tube loss kernel machine with different values of r facilitating the movement of the PI Tube
