@@ -22,3 +22,9 @@ You can use the Tube loss-based deep forecasting models for probabilistic foreca
 Tube loss kernel machine with different values of r facilitating the movement of the PI Tube
 
 ![Screenshot 2024-11-28 143719](https://github.com/user-attachments/assets/d20edecc-4563-4f88-abe0-356d5d3185d2)
+
+
+Tube loss ANN comarision with the QD loss ANN
+
+
+![Screenshot 2024-11-28 150301](https://github.com/user-attachments/assets/ae2897c4-e418-4a5f-be84-266a0ba85d85)
