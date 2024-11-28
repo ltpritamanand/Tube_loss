@@ -24,7 +24,14 @@ Tube loss kernel machine with different values of r facilitating the movement of
 ![Screenshot 2024-11-28 143719](https://github.com/user-attachments/assets/d20edecc-4563-4f88-abe0-356d5d3185d2)
 
 
-Tube loss ANN comarision with the QD loss ANN
+Tube loss ANN comparisions with the QD loss ANN
 
 
 ![Screenshot 2024-11-28 150301](https://github.com/user-attachments/assets/ae2897c4-e418-4a5f-be84-266a0ba85d85)
+
+
+Tube loss LSTM for probablistic forecasting
+![Screenshot 2024-11-28 150557](https://github.com/user-attachments/assets/ffbbee30-a2fa-4a05-817f-60ac8ef2c101)
+![Screenshot 2024-11-28 150655](https://github.com/user-attachments/assets/6a3cc67c-3e3b-4104-8691-de9864e3d371)
+![Screenshot 2024-11-28 150636](https://github.com/user-attachments/assets/c7e1c2ad-7d79-48df-af16-87a132426bd2)
+![Screenshot 2024-11-28 150615](https://github.com/user-attachments/assets/33e82956-16ab-4e67-ba0b-21f59b03ac4f)
