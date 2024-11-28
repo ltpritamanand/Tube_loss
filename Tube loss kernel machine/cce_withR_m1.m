@@ -13,8 +13,9 @@ delta = para.delta;
 count=  ones(max_iter,1);
 %% Intialization
 rng(1);
-w1= rand(n,1)*0;   b1 =2.5; % Intailization effects the results
-w2= rand(n,1)*0;   b2=0;
+w1= rand(n,1); b1 = rand(1,1)*max(ytest);
+ % Intailization effects the results
+w2=rand(n,1); b2 = rand(1,1)*min(ytest);
 f_gradw = zeros(n,n);
 f_gradb = zeros(n,1);
 s_gradw = zeros(n,n);
@@ -148,14 +149,20 @@ loss3= sum(tau*(Htest(m3,:)*w2+b2-ytest(m3)));
 loss4= sum(tau*(ytest(m4)-(Htest(m4,:)*w1+b1)));
 loss=(loss1+loss2+loss3+loss4)/length([m1;m2;m3;m4]) ;
 CI=sum((Htest*(w1-w2)+(b1-b2)))/length(ytest);
-plot(test,ytest,'ro');
-[vv,jj]=sort(test);
-hold on;
-plot(test(jj),Htest(jj,:)*w1+b1,'b-','LineWidth',2);
-hold on;
-plot(test(jj),Htest(jj,:)*w2+b2,'b-','LineWidth',2);
-hold on;
-plot(test(jj),(Htest(jj,:)*(r*(w1+w2))+(r*(b1+b2))),':','LineWidth',3);
+
+% plot(test,ytest,'ro');
+% [vv,jj]=sort(test);
+% hold on;
+% plot(test(jj),Htest(jj,:)*w1+b1,'b-','LineWidth',2);
+% hold on;
+% plot(test(jj),Htest(jj,:)*w2+b2,'b-','LineWidth',2);
+%hold on;
+%plot(test(jj),(Htest(jj,:)*(r*(w1+w2))+(r*(b1+b2))),':','LineWidth',3);
+ plot(ytest,'b-');
+   hold on;
+       plot(Htest*(w1)+b1,'k-');
+   plot(Htest*(w2)+b2,'k-');
+
 pred1 = Htest*w1+b1;
 pred2 = Htest*w2+b2;
 end
