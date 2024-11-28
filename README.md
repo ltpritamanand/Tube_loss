@@ -10,8 +10,13 @@
 7. We have used the Tube loss function for PI estimation in Kernel machines and Artificial Neural Networks and shown that it is far better than its existing alternative.
 8. Also, we have used the Tube loss function in GRU, LSTM, and TCN for probabilistic forecasting and obtained very effective forecasts.
 
-   
 You can use the Tube loss-based deep forecasting models for probabilistic forecasting of wind power, wave energy, solar irradiance, crypto prices, stock prices, exchange rate, pollution rate,  etc.
+
+(a) Tube Loss Kernel Machine: Includes MATLAB code for the Tube loss kernel machine trained with the gradient descent for PI estimation.
+
+(b) Tube Loss ANN: Provides Python code for the Tube loss Artificial Neural Network (ANN) for PI estimation.
+
+(c) Tube Loss DL: Contains Python code for a deep forecasting architecture trained with the Tube loss function for probabilistic forecasting tasks.
 
 
 ![Screenshot 2024-11-28 143719](https://github.com/user-attachments/assets/d20edecc-4563-4f88-abe0-356d5d3185d2)
