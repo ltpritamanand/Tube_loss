@@ -11,3 +11,4 @@
 8. Also, we have used the Tube loss function in GRU, LSTM, and TCN for probabilistic forecasting and obtained very effective forecasts.
 
    
+You can use the Tube loss-based deep forecasting models for probabilistic forecasting of wind power, wave energy, solar irradiance, crypto prices, stock prices, exchange rate, pollution rate,  etc.
