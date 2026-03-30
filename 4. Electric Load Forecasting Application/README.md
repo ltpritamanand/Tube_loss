@@ -1,0 +1,7 @@
+This repository contains the implementation of the proposed Ensemble Tube Loss–based probabilistic load forecasting framework, developed for smart-grid applications. The models are implemented using LSTM, TCN, and GRU architectures and evaluated on the London Smart Meter dataset.
+
+The proposed Ensemble Tube-based forecasting approach is designed to jointly capture aleatoric (data-driven) and epistemic (model-driven) uncertainty. Multiple Tube-based models are independently trained, and their lower and upper prediction bounds are aggregated to construct reliable prediction intervals. Standard probabilistic metrics such as Prediction Interval Coverage Probability (PICP) and Mean Prediction Interval Width (MPIW) are used to evaluate forecast reliability and sharpness.
+
+Experimental results reported in the paper show that the TCN–Tube ensemble model consistently achieves high coverage with narrow prediction intervals, yielding up to 30% reduction in MPIW compared to non-Tube baselines, demonstrating the effectiveness of the proposed framework for uncertainty-aware smart-grid forecasting.
+
+The generated prediction intervals can further be leveraged for anomaly detection, enabling the identification of abnormal consumption patterns such as sensor faults or energy theft, and improving the interpretability and operational value of probabilistic forecasts in real-time smart-grid environments.
