@@ -24,3 +24,5 @@ Fransico. Our numerical results demonstrate that the pro-
 posed deep forecasting models produce more reliable and
 narrower PIs compared to recently developed probabilistic
 wind forecasting methods.
+
+https://arxiv.org/abs/2412.06853v3
