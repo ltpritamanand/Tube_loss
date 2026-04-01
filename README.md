@@ -1,14 +1,14 @@
 # Improving Prediction Interval Estimation and Deep Probabilistic Forecasting Using the Tube Loss Function
 Please see the full paper at  https://arxiv.org/pdf/2412.06853
 
- 1. The first loss function that guarantees target t-coverage asymptotically, with proof provided at   https://arxiv.org/pdf/2412.06853 
+ 1. The novel loss function that guarantees target 1-\alpha -coverage asymptotically, with proof provided at   https://arxiv.org/pdf/2412.06853 
  2. Tube loss can move the PI tube up and down with its r parameter for capturing the denser region of the data cloud for narrow PI Tube.
 3.  For symmteric noise distribution, use $r=0.5$. For long-tailed noise distribution, lower or higher values of r provide the narrow PI.
 4.  With r =0.5, it is a first contnious loss function for PI estimation and Probablistic Forecasting tasks.
 5. Tube loss is easy to backpropagate with the gradient descent method without any approximation.
-6. The delta parameter of the Tube loss helps to reduce the width of the PI tube when the obtained PI width is somewhat greater than target t on the validation set. 
+6. The delta parameter of the Tube loss may recalibrate the PI to reduce uncertainty in the estimate, leading to a narrower and more reliable PI.
 7. We have used the Tube loss function for PI estimation in Kernel machines and Artificial Neural Networks and shown that it is far better than its existing alternative.
-8. Also, we have used the Tube loss function in GRU, LSTM, and TCN for probabilistic forecasting and obtained very effective forecasts.
+8. Also, we have used the Tube loss function in GRU, LSTM, and TCN for probabilistic forecasting and obtained very effective forecasts in  wind power and electric load problems.
 
 You can use the Tube loss-based deep forecasting models for probabilistic forecasting of wind power, wave energy, solar irradiance, crypto prices, stock prices, exchange rate, pollution rate,  etc.
 
@@ -18,6 +18,9 @@ You can use the Tube loss-based deep forecasting models for probabilistic foreca
 
 (c) Tube Loss DL for probabilistic forecas: Contains Python code for  deep forecasting architectures trained with the Tube loss function for probabilistic forecasting tasks.
 
+(d)
+
+(e)
 
 Tube loss kernel machine with different values of r facilitating the movement of the PI Tube
 
