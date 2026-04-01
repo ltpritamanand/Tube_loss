@@ -1,142 +1,58 @@
-Implementation of the Tube loss based NN
-
-A simple artificial dataset illustration ( Figure 8 of the paper) is at Tube_loss_ANN.ipynb
-The effect of the r parameter at Tube loss is at Tube_loss_ANN_r_effect.ipynb  
-
-
-# Tube Loss ANN - Experiments
-
-For a detailed overview of the Tube Loss function, please refer to the [main README](../README.md) and the full paper at https://arxiv.org/pdf/2412.06853
-
-## Experiments in This Folder
-
-### Experiment 1: Basic Tube Loss ANN Demonstration (`Tube_loss_ANN.ipynb`)
-
-**Purpose**: Illustrates Figure 8 from the paper - demonstrating how Tube Loss trains an ANN to produce well-calibrated prediction intervals on a simple artificial dataset.
-
-#### Dataset
-- **Type**: Artificial synthetic data
-- **Function**: $y = \frac{\sin(x)}{x} + \text{noise}$
-- **Samples**: 3000 points
-- **Noise**: Uniform distribution [-1, 1] (configurable to normal distribution)
-
-#### Model Architecture
-```python
-Input Layer (1 feature) 
-    ↓
-Hidden Layer: 100 neurons, ReLU activation
-    ↓
-Output Layer: 2 neurons, Linear activation (upper bound, lower bound)
-```
-
-**Key Design Decision**: Output layer biases initialized to `[-3, 3]` to ensure prediction intervals start with reasonable bounds.
-
-#### Hyperparameters
-
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| `q` | 0.95 | Target coverage probability (95%) |
-| `r` | 0.5 | Tube movement parameter (optimal for symmetric noise) |
-| `δ` (delta) | 0 | Recalibration term |
-| Batch size | 100 | Mini-batch size |
-| Initial learning rate | 0.02 | Adam optimizer with exponential decay |
-
-#### Training Configuration
-- **Optimizer**: Adam with exponential learning rate decay
-- **Decay schedule**: decay_steps=10000, decay_rate=0.01
-- **Total epochs**: 1200 (shown in 6 iterations of 200 epochs each)
-- **Loss function selection**: `l=2` for Tube Loss, `l=1` for QD loss
-
-#### Evaluation Metrics
-```python
-PICP = mean(y_true ∈ [y_lower_pred, y_upper_pred])  # Coverage probability
-MPIW = mean(y_upper_pred - y_lower_pred)            # Mean interval width
-```
+This README provides a research-grade overview of the experimental files associated with the **Tube Loss** paper.
 
 ---
 
-### Experiment 2: Effect of r Parameter (`Tube_loss_ANN_r_effect.ipynb`)
+# Experiments for Tube Loss: A Novel Approach for Prediction Interval Estimation
 
-**Purpose**: Demonstrates how the `r` parameter enables the PI tube to move up and down, capturing denser regions of data clouds for narrower prediction intervals.
+This directory contains the source code and experimental setups for implementing and evaluating the **Tube Loss** function, as introduced in:
+> *Anand, P., Bandyopadhyay, T., & Chandra, S. "Tube Loss: A Novel Approach for Prediction Interval Estimation and probabilistic forecasting."*
 
-#### Key Concept
-The `r` parameter controls the movement direction of the prediction interval tube:
-- **r = 0.5**: Optimal for symmetric noise distributions (centered tube)
-- **r < 0.5**: Tube moves downward - beneficial for long-tailed distributions with upper outliers
-- **r > 0.5**: Tube moves upward - beneficial for long-tailed distributions with lower outliers
+## Overview
 
-#### Practical Guidance
-> For symmetric noise, use r=0.5. For asymmetric/long-tailed noise, tune r to achieve narrower PIs while maintaining target coverage.
+The **Tube Loss** is a novel loss function designed for the simultaneous estimation of the upper and lower bounds of a Prediction Interval (PI). Unlike traditional methods that may require separate optimization for each bound or assume specific distributions, Tube Loss allows for a trade-off between coverage and width through a single optimization problem. 
 
----
+A key feature of Tube Loss is the **$r$ parameter**, which allows users to shift the interval to capture denser regions of the conditional distribution, effectively sharpening the PI width when the response variable is skewed.
 
-### Comparison: Tube Loss vs QD Loss
+## File Descriptions
 
-The notebook includes implementation of the **QD (Quantile-based Deep) loss** as a baseline:
+### 1. `Tube_loss_ANN.ipynb`
+This notebook provides the core implementation of the Tube Loss within an Artificial Neural Network (ANN) framework.
+* **Experimental Setup**: Uses a synthetic dataset generated from $y = \frac{\sin(x)}{x} + \epsilon$, where $X \in [-2\pi, 2\pi]$.
+* **Noise Profiles**: Tests the model against symmetric noise distributions, including **Uniform** and **Normal**.
+* **Key Functionality**: Defines the Keras-based implementation of the Tube Loss and demonstrates that the estimated PIs asymptotically converge to the true boundaries of the distribution at a specified confidence level.
 
-| Aspect | Tube Loss | QD Loss |
-|--------|-----------|---------|
-| Continuity | Fully continuous | Uses sigmoid approximation |
-| Coverage guarantee | Asymptotic proof provided | Heuristic approach |
-| Parameters | q, r, δ | λ, α, soften |
-| Training stability | Direct gradient flow | Requires tuning of λ |
+### 2. `Tube_loss_ANN_r_effect.ipynb.ipynb`
+This notebook focuses on the impact of the $r$ parameter, particularly in the context of asymmetric (skewed) data.
+* **Data Generation**: Uses **Chi-square noise** ($\epsilon \sim \chi^2, df=2$) to introduce significant skewness into the response variable.
+* **$r$-Effect Analysis**: Demonstrates how varying $r$ (e.g., comparing $r=0.1$ and $r=0.5$) shifts the "tube" to prioritize regions of higher density.
+* **Visualization**: Includes comparative plots showing how different $r$ values affect the final interval width and coverage for the same skewed dataset.
 
-**QD Loss Hyperparameters in Code**:
-- `lambda_ = 0.01` (penalty weight)
-- `alpha_ = 0.05` (targeting 95% coverage)
-- `soften_ = 255.0` (sigmoid steepness for approximation)
+## Technical Methodology
 
----
+### Model Architecture
+The experiments utilize a standard feed-forward MLP architecture:
+* **Input Layer**: 1 unit (the $X$ feature).
+* **Hidden Layer**: 200 neurons with **ReLU** activation and Random Normal kernel initialization.
+* **Output Layer**: 2 neurons with **Linear** activation, representing the lower ($f_L$) and upper ($f_U$) bounds of the PI.
+* **Critical Initialization**: To prevent the interval from collapsing early in training, the output biases are initialized to a wide range (e.g., `[-3, 3]`).
 
-### Visual Output Description
+### Loss Function Implementation
+The Tube Loss (referred to as `confidence_loss` in the code) is implemented using the `tensorflow.keras` backend. It calculates the penalty based on:
+1.  **Interval Width**: The distance between $f_U$ and $f_L$.
+2.  **Violation Penalty**: The degree to which the true target $y$ falls outside the estimated "tube".
+3.  **The $r$ Parameter**: Controls the vertical bias of the interval.
 
-**Figure from Tube_loss_ANN.ipynb**:
-- **Red scatter points**: Training data with noise
-- **Black dashed lines**: True prediction interval boundaries
-- **Blue solid lines**: Estimated prediction interval by trained model
+### Optimization
+* **Optimizer**: Adam optimizer with a custom learning rate schedule (Exponential Decay).
+* **Training Data**: 3,000 samples for symmetric noise tests and 1,000 samples for skewed noise tests.
 
-The visualization demonstrates how the learned PI tube converges toward the true PI after 1200 epochs of training.
+## How to Use
+1.  **Dependencies**: Ensure `tensorflow`, `keras`, `numpy`, `matplotlib`, and `scipy` are installed.
+2.  **Running Experiments**: Open the notebooks in a Jupyter environment (or Google Colab).
+3.  **Configuration**: In `Tube_loss_ANN.ipynb`, you can toggle between `uniform` and `normal` noise to observe the model's robustness. In the $r$-effect notebook, modify the `r` and `delta` variables to see their influence on the interval's position and width.
 
----
-
-### How to Run
-
-```python
-# In Jupyter notebook or Google Colab:
-import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense
-import tensorflow as tf
-
-# Load and execute cells from Tube_loss_ANN.ipynb
-```
-
-**Requirements**:
-- Python 3.7+
-- TensorFlow/Keras ≥ 2.0
-- NumPy
-- Matplotlib
-
----
-
-### Expected Results
-
-For the uniform noise dataset with q=0.95:
-- **PICP (Coverage)**: ≈ 0.94 - 0.96 (target: 0.95)
-- **MPIW (Width)**: ≈ 1.8 - 2.2 (depends on training convergence)
-
-Tube Loss typically achieves tighter intervals than QD loss while maintaining comparable or better coverage probability.
-
----
-
-<!-- 
-================================================================================
-ORIGINAL README.TXT CONTENTS (PRESERVED FOR REFERENCE)
-================================================================================
-
-Implementation of the Tube loss based NN
-
-A simple artificial dataset illustration ( Figure 8 of the paper) is at Tube_loss_ANN.ipynb
-The effect of the r parameter at Tube loss is at Tube_loss_ANN_r_effect.ipynb  
-
--->
+## Results Visualization
+The notebooks produce plots showing:
+* **Scatter Plot**: The raw noisy data points.
+* **True PI (Dashed Lines)**: The theoretical bounds of the noise distribution.
+* **Estimated PI (Solid Lines)**: The bounds predicted by the Tube Loss-trained ANN.
