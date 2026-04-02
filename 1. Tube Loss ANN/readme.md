@@ -1,7 +1,3 @@
-This README provides a research-grade overview of the experimental files associated with the **Tube Loss** paper.
-
----
-
 # Experiments for Tube Loss: A Novel Approach for Prediction Interval Estimation
 
 This directory contains the source code and experimental setups for implementing and evaluating the **Tube Loss** function, as introduced in:
