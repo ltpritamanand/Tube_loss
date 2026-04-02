@@ -1,4 +1,6 @@
 # Tube-Loss-based-Deep-Networks-for-improving-the-probabilistic-forecasting-of-wind-speed
+Read the paper here :- https://arxiv.org/pdf/2505.18284
+
 Uncertainty Quantification (UQ) in wind speed
 forecasting is a critical challenge in wind power production
 due to the inherently volatile nature of wind. By quantify-
@@ -25,4 +27,3 @@ posed deep forecasting models produce more reliable and
 narrower PIs compared to recently developed probabilistic
 wind forecasting methods.
 
-https://arxiv.org/abs/2412.06853v3
