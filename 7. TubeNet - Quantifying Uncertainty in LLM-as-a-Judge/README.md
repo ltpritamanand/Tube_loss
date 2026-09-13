@@ -3,7 +3,6 @@
 <p align="center"><b>Calibrated Prediction Intervals for LLM Evaluation with Tube Loss &amp; Conformal Prediction</b></p>
 
 <p align="center">
-  <a href="Paper_Quantifying_LLM_as_a_Judge.pdf"><img src="https://img.shields.io/badge/Paper-PDF-c0392b?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Paper"></a>
   <img src="https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch">
   <img src="https://img.shields.io/badge/Judges-Groq%20API-00A67E?style=for-the-badge" alt="Groq API">
@@ -323,8 +322,6 @@ TubeNet acts as a denoising autoencoder: by fusing LLM statistics with BERT sema
 
 ```
 7. TubeNet - Quantifying Uncertainty in LLM-as-a-Judge/
-│
-├── Paper_Quantifying_LLM_as_a_Judge.pdf   # Accepted paper
 │
 ├── bmp_results_A/                   # Output figures and results for Condition A
 │   ├── fig1_main.png
