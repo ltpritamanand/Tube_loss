@@ -34,6 +34,12 @@ Condition **C2** is the best configuration: adding only four distributional stat
 * TubeNet's interval midpoint beats the raw LLM score on MAE against human ground truth across all 9 experiments and 4 dimensions.
 * Five judges evaluated: Llama-3.3-70b, Mixtral-8x7b, Qwen3-32b, Gemma2-9b-it, and GPT-OSS-120b (all via the Groq API).
 
+## Result Figures
+
+| Main results | Per-dimension intervals |
+|---|---|
+| ![Main results](bmp_results_A/fig1_main.png) | ![Per-dimension intervals](bmp_results_A/fig2_per_dim.png) |
+
 ## File Descriptions
 
 ### `experiments/`
